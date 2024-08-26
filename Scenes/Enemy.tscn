@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmg00ajypj0x6"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_rmlkv"]
+[ext_resource type="Texture2D" uid="uid://dnw6qh3swexew" path="res://Assets/Enemy Assets/Small Bee/Attack/Attack-Sheet.png" id="2_78l3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xlxu"]
+size = Vector2(19, 22)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_rmlkv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("2_78l3p")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -31)
+shape = SubResource("RectangleShape2D_6xlxu")

@@ -1,23 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://iatqn0qtv4gg"]
 
-[ext_resource type="PackedScene" uid="uid://bs2rh85l4kfs4" path="res://Scenes/Player.tscn" id="1_nwgug"]
+[ext_resource type="PackedScene" uid="uid://bs2rh85l4kfs4" path="res://Scenes/Player.tscn" id="1_ncpvf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy7bu"]
-size = Vector2(359, 46)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja5r8"]
+size = Vector2(589, 40)
 
 [node name="mainScene" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-offset_left = 123.0
-offset_top = 257.0
-offset_right = 475.0
-offset_bottom = 297.0
+offset_left = 27.0
+offset_top = 280.0
+offset_right = 616.0
+offset_bottom = 320.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(298.5, 277)
-shape = SubResource("RectangleShape2D_xy7bu")
+position = Vector2(321.5, 300)
+shape = SubResource("RectangleShape2D_ja5r8")
 
-[node name="Player" parent="." instance=ExtResource("1_nwgug")]
-position = Vector2(260, 205)
+[node name="Player" parent="." instance=ExtResource("1_ncpvf")]
+position = Vector2(311, 153)

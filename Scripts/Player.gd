@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Player Variables
 var speed = 190
-var jumpPower = 245
+var jumpPower = 245g
 var gravity = 1000
 
 func _physics_process(delta):

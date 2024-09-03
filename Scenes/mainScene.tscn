@@ -2,22 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://bs2rh85l4kfs4" path="res://Scenes/Player.tscn" id="1_ncpvf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja5r8"]
-size = Vector2(589, 40)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtov1"]
+size = Vector2(600, 51)
 
 [node name="mainScene" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-offset_left = 14.0
-offset_top = 310.0
-offset_right = 603.0
-offset_bottom = 350.0
+offset_left = 12.0
+offset_top = 275.0
+offset_right = 600.0
+offset_bottom = 315.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(309, 330)
-shape = SubResource("RectangleShape2D_ja5r8")
+position = Vector2(305, 293.5)
+shape = SubResource("RectangleShape2D_xtov1")
 
 [node name="Player" parent="." instance=ExtResource("1_ncpvf")]
-position = Vector2(299, 244)
+position = Vector2(135, 151)

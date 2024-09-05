@@ -18,7 +18,7 @@ func _physics_process(delta):
 	
 	
 	# On the floor and not on the floor
-	if is_on_floor():j
+	if is_on_floor():
 		if Input.is_action_just_pressed("Jump"):
 			velocity.y -= jumpPower
 			$AnimationPlayer.play("Jump")
@@ -37,7 +37,4 @@ func _physics_process(delta):
 		else:
 			$AnimationPlayer.play("Jump")
 		
-	
-			
-			
 	move_and_slide()

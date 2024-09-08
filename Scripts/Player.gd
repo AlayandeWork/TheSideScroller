@@ -4,6 +4,7 @@ extends CharacterBody2D
 var speed = 190
 var jumpPower = 350
 var gravity = 1000
+var isAttacking = false
 
 func _physics_process(delta):
 	
@@ -17,9 +18,7 @@ func _physics_process(delta):
 	var playerDirection = Input.get_axis("Left","Right")
 	
 	
-	# On the floor and not on the floor
 	
-	# On the floor
 	if is_on_floor():
 		if Input.is_action_just_pressed("Jump"):
 			velocity.y -= jumpPower
@@ -33,11 +32,11 @@ func _physics_process(delta):
 		else:
 			velocity.x = 0
 			$AnimationPlayer.play("Idle")
-	# Not on the floor
 	else:
 		if velocity.y > 0:
 			$AnimationPlayer.play("Fall")
 		else:
 			$AnimationPlayer.play("Jump")
-		
+	
+	
 	move_and_slide()

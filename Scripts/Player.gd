@@ -22,7 +22,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		if Input.is_action_just_pressed("Jump"):
 			velocity.y -= jumpPower
-			$AnimationPlayer.play("Jump")
+			$AnimationPlayer.plagy("Jump")
 		elif playerDirection:
 			velocity.x = speed * playerDirection
 			if playerDirection > 0:

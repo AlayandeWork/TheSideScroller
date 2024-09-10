@@ -4,6 +4,8 @@ extends CharacterBody2D
 var speed = 190
 var jumpPower = 350
 var gravity = 1000
+var currentDirection = 1 
+var playerAttacking = false
 
 func _physics_process(delta):
 	
@@ -20,22 +22,28 @@ func _physics_process(delta):
 	# Check player is on the floor
 	if is_on_floor():
 		# Player Jumping
-		if Input.is_action_just_pressed("Jump"):
+		if Input.is_action_just_pressed("Jump") and playerAttacking == false:
 			velocity.y -= jumpPower
 			$AnimationPlayer.play("Jump")
-		 # Player running (Left or Right)
-		elif playerDirection:
+		 # Player Running
+		elif playerDirection and playerAttacking == false:
 			velocity.x = speed * playerDirection
 			if playerDirection > 0:
+				currentDirection = 1 # Facing Right
 				$AnimationPlayer.play("rightRun")
 			else:
+				currentDirection = -1 # Facing Left
 				$AnimationPlayer.play("leftRun")
 		else:
-			# Player Idling
+		# Player Idle
 			velocity.x = 0
-			$AnimationPlayer.play("Idle")
+			if playerAttacking == false:
+				if currentDirection > 0:
+					$AnimationPlayer.play("IdleRight")
+				else:
+					$AnimationPlayer.play("IdleLeft")
 	
-	# Checks if the player is not on the floor			
+	# Check player not on the floor
 	else:
 		# Player Falling
 		if velocity.y > 0:
@@ -44,4 +52,16 @@ func _physics_process(delta):
 		else:
 			$AnimationPlayer.play("Jump")
 			
+	if Input.is_action_just_pressed("Attack"):
+		playerAttacking = true
+		if currentDirection > 0:
+			$AnimationPlayer.play("attackRight")
+		else:
+			$AnimationPlayer.play("attackLeft")
+			
 	move_and_slide()
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "attackRight" or anim_name == "attackLeft":
+		playerAttacking = false

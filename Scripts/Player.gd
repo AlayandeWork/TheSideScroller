@@ -52,6 +52,7 @@ func _physics_process(delta):
 		else:
 			$AnimationPlayer.play("Jump")
 			
+			
 	if Input.is_action_just_pressed("Attack"):
 		playerAttacking = true
 		if currentDirection > 0:

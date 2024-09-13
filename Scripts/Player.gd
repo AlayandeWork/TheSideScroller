@@ -16,7 +16,7 @@ func _physics_process(delta):
 	
 	
 	# Player movement Left & Right
-	var playerDirection = Input.get_axis("Left","Right") and all
+	var playerDirection = Input.get_axis("Left","Right")
 	
 	
 	# Check player is on the floor

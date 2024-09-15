@@ -1,1 +1,1 @@
-extends CharacterBody2Ds
+extends CharacterBody2Dss

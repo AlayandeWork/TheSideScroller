@@ -264,4 +264,9 @@ libraries = {
 "": SubResource("AnimationLibrary_00cc4")
 }
 
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -1
+limit_bottom = 350
+position_smoothing_enabled = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

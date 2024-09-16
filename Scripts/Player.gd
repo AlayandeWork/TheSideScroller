@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Player Variables
 var speed = 190
-var jumpPower = 350
+var jumpPower = 370
 var gravity = 1000
 var currentDirection = 1 
 var playerAttacking = false

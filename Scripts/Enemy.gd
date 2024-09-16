@@ -1,2 +1,0 @@
-extends CharacterBody2Dss
-fghf

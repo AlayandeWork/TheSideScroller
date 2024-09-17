@@ -265,6 +265,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
 limit_left = -1
 limit_bottom = 350
 position_smoothing_enabled = true

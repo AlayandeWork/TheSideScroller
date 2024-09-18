@@ -20,7 +20,7 @@ func _physics_process(delta):
 	
 	
 	# Check player is on the floor
-	if is_on_floor():
+	if is_on_floor():s
 		# Player Jumping
 		if Input.is_action_just_pressed("Jump") and playerAttacking == false:
 			velocity.y -= jumpPower

@@ -7,7 +7,7 @@ var gravity = 1000
 var currentDirection = 1 
 var playerAttacking = false
 
-func _physics_process(delta):SGDVCHS
+func _physics_process(delta):
 	
 	# Apply gravity to the player
 	if not is_on_floor():

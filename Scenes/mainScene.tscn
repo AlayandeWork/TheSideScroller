@@ -4026,6 +4026,7 @@ sources/3 = SubResource("TileSetAtlasSource_homsh")
 [node name="mainScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(-4, -2)
 tile_set = SubResource("TileSet_o3cqj")
 format = 2
 layer_0/name = "Floor"
@@ -4038,4 +4039,4 @@ layer_3/name = "House"
 layer_3/tile_data = PackedInt32Array()
 
 [node name="Player" parent="." instance=ExtResource("5_wyt43")]
-position = Vector2(27, 322)
+position = Vector2(17, 321)

@@ -16,6 +16,7 @@ func _physics_process(delta):
 	
 	
 	# Player movement Left & Right
+	var inter = Input.get_accelerometer()
 	var playerDirection = Input.get_axis("Left","Right")
 	
 	

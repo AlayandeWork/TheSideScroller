@@ -63,7 +63,7 @@ func _physics_process(delta):
 			
 	move_and_slide()
 
-
+# Function for animation finished
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attackRight" or anim_name == "attackLeft":
 		playerAttacking = false

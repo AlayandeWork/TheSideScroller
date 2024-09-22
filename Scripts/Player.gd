@@ -23,6 +23,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		# Player Jumping
 		if Input.is_action_just_pressed("Jump") and playerAttacking == false:
+			# Adjusting the jump power
 			velocity.y -= jumpPower
 			$AnimationPlayer.play("Jump")
 		 # Player Running

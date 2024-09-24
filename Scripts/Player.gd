@@ -36,7 +36,7 @@ func _physics_process(delta):
 				currentDirection = -1 # Facing Left
 				$AnimationPlayer.play("leftRun")
 		else:
-		# Player Idley
+		# Player Idle
 			velocity.x = 0
 			if playerAttacking == false:
 				if currentDirection > 0:

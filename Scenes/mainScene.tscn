@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://iatqn0qtv4gg"]
+[gd_scene load_steps=14 format=3 uid="uid://iatqn0qtv4gg"]
 
 [ext_resource type="Texture2D" uid="uid://br2oyfsk6oqkh" path="res://Assets/World Assets/oak_woods_tileset.png" id="1_4v5cy"]
 [ext_resource type="Texture2D" uid="uid://cuy5nopg2dxyj" path="res://Assets/World Assets/rock_3.png" id="2_63hwg"]
 [ext_resource type="Texture2D" uid="uid://cy7u42bqobm18" path="res://Assets/World Assets/grass_2.png" id="3_84067"]
 [ext_resource type="Texture2D" uid="uid://cspeppk4fbjua" path="res://Assets/World Assets/lamp.png" id="4_wfjo7"]
 [ext_resource type="PackedScene" uid="uid://bs2rh85l4kfs4" path="res://Scenes/Player.tscn" id="5_wyt43"]
+[ext_resource type="Texture2D" uid="uid://vi5ottr88lt6" path="res://Assets/World Assets/background_layer_1.png" id="6_ted11"]
+[ext_resource type="Texture2D" uid="uid://cfdynuygwc7uc" path="res://Assets/World Assets/background_layer_2.png" id="7_t4q4p"]
+[ext_resource type="Texture2D" uid="uid://cbjq72x3u7yh7" path="res://Assets/World Assets/background_layer_3.png" id="8_2iydt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8l07"]
 texture = ExtResource("1_4v5cy")
@@ -4026,7 +4029,7 @@ sources/3 = SubResource("TileSetAtlasSource_homsh")
 [node name="mainScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-4, -2)
+position = Vector2(-1, -180)
 tile_set = SubResource("TileSet_o3cqj")
 format = 2
 layer_0/name = "Floor"
@@ -4039,4 +4042,36 @@ layer_3/name = "House"
 layer_3/tile_data = PackedInt32Array()
 
 [node name="Player" parent="." instance=ExtResource("5_wyt43")]
-position = Vector2(17, 321)
+position = Vector2(9, 149)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="BackOne" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(640, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/BackOne"]
+offset_right = 640.0
+offset_bottom = 180.0
+texture = ExtResource("6_ted11")
+stretch_mode = 1
+
+[node name="BackTwo" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0)
+motion_mirroring = Vector2(640, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/BackTwo"]
+offset_right = 640.0
+offset_bottom = 180.0
+texture = ExtResource("7_t4q4p")
+stretch_mode = 1
+
+[node name="BackThree" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 0)
+motion_mirroring = Vector2(640, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/BackThree"]
+offset_right = 640.0
+offset_bottom = 180.0
+texture = ExtResource("8_2iydt")
+stretch_mode = 1

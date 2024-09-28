@@ -49,7 +49,7 @@ func _physics_process(delta):
 		# Player Falling
 		if velocity.y > 0:
 			$AnimationPlayer.play("Fall")
-		# Player Jumping
+		# Player Jumpings
 		else:
 			$AnimationPlayer.play("Jump")
 			

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+
+
 # Player Variables
 var speed = 190
 var jumpPower = 370
@@ -12,7 +14,6 @@ func _physics_process(delta):
 	# Apply gravity to the player
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	
 	
 	
 	# Player movement Left & Right
@@ -44,6 +45,7 @@ func _physics_process(delta):
 				else:
 					$AnimationPlayer.play("IdleLeft")
 	
+	
 	# Check player not on the floor
 	else:
 		# Player Falling
@@ -62,6 +64,7 @@ func _physics_process(delta):
 			$AnimationPlayer.play("attackLeft")
 			
 	move_and_slide()
+
 
 # Function for animation finished
 func _on_animation_player_animation_finished(anim_name):

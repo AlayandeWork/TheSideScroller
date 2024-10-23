@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmg00ajypj0x6"]
+[gd_scene load_steps=20 format=3 uid="uid://dmg00ajypj0x6"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_rmlkv"]
 [ext_resource type="Texture2D" uid="uid://dnw6qh3swexew" path="res://Assets/Enemy Assets/Small Bee/Attack/Attack-Sheet.png" id="2_78l3p"]
@@ -110,14 +110,26 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbylj"]
 size = Vector2(17, 25)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8j8me"]
+radius = 75.0067
+
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_rmlkv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_qu1da")
-animation = &"enemyHit"
+animation = &"enemyFly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -33.5)
 shape = SubResource("RectangleShape2D_bbylj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -33)
+shape = SubResource("CircleShape2D_8j8me")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

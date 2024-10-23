@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://iatqn0qtv4gg"]
+[gd_scene load_steps=17 format=3 uid="uid://iatqn0qtv4gg"]
 
 [ext_resource type="Texture2D" uid="uid://br2oyfsk6oqkh" path="res://Assets/World Assets/oak_woods_tileset.png" id="1_4v5cy"]
 [ext_resource type="Texture2D" uid="uid://cuy5nopg2dxyj" path="res://Assets/World Assets/rock_3.png" id="2_63hwg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://vi5ottr88lt6" path="res://Assets/World Assets/background_layer_1.png" id="6_ted11"]
 [ext_resource type="Texture2D" uid="uid://cfdynuygwc7uc" path="res://Assets/World Assets/background_layer_2.png" id="7_t4q4p"]
 [ext_resource type="Texture2D" uid="uid://cbjq72x3u7yh7" path="res://Assets/World Assets/background_layer_3.png" id="8_2iydt"]
+[ext_resource type="PackedScene" uid="uid://dmg00ajypj0x6" path="res://Scenes/Enemy.tscn" id="9_epoh3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8l07"]
 texture = ExtResource("1_4v5cy")
@@ -4058,10 +4059,8 @@ layer_2/tile_data = PackedInt32Array(2490425, 3, 0, 2490399, 3, 0, 2490484, 3, 0
 layer_3/name = "House"
 layer_3/tile_data = PackedInt32Array(1835018, 4, 0)
 
-[node name="Player" parent="." instance=ExtResource("5_wyt43")]
-position = Vector2(9, 149)
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_offset = Vector2(-114.527, 0)
 
 [node name="BackOne" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0, 0)
@@ -4092,3 +4091,9 @@ offset_right = 640.0
 offset_bottom = 180.0
 texture = ExtResource("8_2iydt")
 stretch_mode = 1
+
+[node name="Enemy" parent="." instance=ExtResource("9_epoh3")]
+position = Vector2(1002, 166)
+
+[node name="Player" parent="." instance=ExtResource("5_wyt43")]
+position = Vector2(730, 151)

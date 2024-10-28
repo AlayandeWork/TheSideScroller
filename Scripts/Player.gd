@@ -8,6 +8,7 @@ var jumpPower = 370
 var gravity = 1000
 var currentDirection = 1 
 var playerAttacking = false
+var attack_damage = 20
 
 func _physics_process(delta):
 	
@@ -63,9 +64,17 @@ func _physics_process(delta):
 			$AnimationPlayer.play("attackLeft")
 			
 	move_and_slide()
-
+  
 
 # Function for animation finished
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attackRight" or anim_name == "attackLeft":
 		playerAttacking = false
+
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("hurtbox") and playerAttacking:
+		print("Attacking")
+		area.get_parent().take_damage(attack_damage)
+		
+	

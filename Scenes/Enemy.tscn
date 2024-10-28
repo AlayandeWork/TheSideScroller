@@ -125,7 +125,9 @@ animation = &"enemyFly"
 position = Vector2(0.5, -33.5)
 shape = SubResource("RectangleShape2D_bbylj")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["hurtbox"]]
+collision_layer = 2
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -33)

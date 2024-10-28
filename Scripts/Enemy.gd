@@ -3,6 +3,8 @@ extends  CharacterBody2D
 var player = null
 var enemySpeed = 100
 
+var health = 100
+
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _process(delta):
@@ -36,3 +38,12 @@ func Idleanimation():
 	if 	animated_sprite.animation != "enemyFly":
 		animated_sprite.play("enemyFly")
 		
+func take_damage(damage_amount):
+	health -= damage_amount
+	print(health)
+	if health <= 0:
+		die()
+		
+func die():
+	print("Enemy defeated!")
+	queue_free()

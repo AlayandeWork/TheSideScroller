@@ -8,6 +8,7 @@ var jumpPower = 370
 var gravity = 1000
 var currentDirection = 1 
 var playerAttacking = false
+
 var attack_damage = 20
 
 func _physics_process(delta):
@@ -73,8 +74,5 @@ func _on_animation_player_animation_finished(anim_name):
 
 
 func _on_area_2d_area_entered(area):
-	if area.is_in_group("hurtbox") and playerAttacking:
-		print("Attacking")
+	if area.is_in_group("enemygroup") and playerAttacking:
 		area.get_parent().take_damage(attack_damage)
-		
-	

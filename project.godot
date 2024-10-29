@@ -48,9 +48,9 @@ Attack={
 
 [layer_names]
 
-2d_physics/layer_1="World"
-2d_physics/layer_2="Enemy"
-2d_physics/layer_3="Player"
+2d_physics/layer_1="WORLD"
+2d_physics/layer_2="ENEMY"
+2d_physics/layer_3="PLAYER"
 
 [rendering]
 

@@ -114,6 +114,8 @@ size = Vector2(17, 25)
 radius = 75.0067
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_rmlkv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -125,7 +127,7 @@ animation = &"enemyFly"
 position = Vector2(0.5, -33.5)
 shape = SubResource("RectangleShape2D_bbylj")
 
-[node name="Area2D" type="Area2D" parent="." groups=["hurtbox"]]
+[node name="Area2D" type="Area2D" parent="." groups=["enemygroup"]]
 collision_layer = 2
 collision_mask = 5
 

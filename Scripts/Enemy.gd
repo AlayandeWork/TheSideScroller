@@ -7,11 +7,6 @@ var health = 100
 
 @onready var animated_sprite = $AnimatedSprite2D
 
-
-func _physics_process(delta):
-	update_health()
-	
-	
 func _process(delta):
 	if player:
 		followPlayer(delta)
@@ -51,12 +46,3 @@ func take_damage(damage_amount):
 		
 func die():
 	queue_free()
-
-
-func update_health():
-	var enemyHealth = $ProgressBar
-	
-	enemyHealth.value = health
-	
-	
-	

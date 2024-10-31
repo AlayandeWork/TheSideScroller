@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bs2rh85l4kfs4"]
+[gd_scene load_steps=16 format=3 uid="uid://bs2rh85l4kfs4"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uwoje"]
 [ext_resource type="Texture2D" uid="uid://b787wrdxhynxp" path="res://Assets/Player Assets/player.png" id="2_0ngc8"]
@@ -319,6 +319,10 @@ _data = {
 "rightRun": SubResource("Animation_06icx")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gatyn"]
+radius = 14.0
+height = 40.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
@@ -354,6 +358,14 @@ limit_left = 0
 limit_top = 0
 limit_bottom = 180
 position_smoothing_enabled = true
+
+[node name="Area2DDD" type="Area2D" parent="." groups=["enemyattacking"]]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DDD"]
+position = Vector2(-1, -16)
+shape = SubResource("CapsuleShape2D_gatyn")
 
 [connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

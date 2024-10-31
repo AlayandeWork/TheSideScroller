@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+var playerHealth  = 100
 
 # Player Variables
 var speed = 190
@@ -66,7 +66,13 @@ func _physics_process(delta):
 			
 	move_and_slide()
   
-
+func playerDamaging(enemyDamageAmount):
+	playerHealth -= enemyDamageAmount
+	print(playerHealth)
+	if playerHealth <= 0:
+		queue_free()
+		
+		
 # Function for animation finished
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attackRight" or anim_name == "attackLeft":

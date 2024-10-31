@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmg00ajypj0x6"]
+[gd_scene load_steps=21 format=3 uid="uid://dmg00ajypj0x6"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_rmlkv"]
 [ext_resource type="Texture2D" uid="uid://dnw6qh3swexew" path="res://Assets/Enemy Assets/Small Bee/Attack/Attack-Sheet.png" id="2_78l3p"]
@@ -113,6 +113,8 @@ size = Vector2(17, 25)
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j8me"]
 radius = 75.0067
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpond"]
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
@@ -137,6 +139,19 @@ collision_mask = 5
 position = Vector2(0, -33)
 shape = SubResource("CircleShape2D_8j8me")
 
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-21, -31)
+shape = SubResource("RectangleShape2D_wpond")
+
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="area_exited" from="Area2D2" to="." method="_on_area_2d_2_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

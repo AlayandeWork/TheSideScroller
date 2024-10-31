@@ -147,6 +147,14 @@ collision_mask = 4
 position = Vector2(-21, -31)
 shape = SubResource("RectangleShape2D_wpond")
 
+[node name="Area2D3" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(25, -31)
+shape = SubResource("RectangleShape2D_wpond")
+
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
@@ -154,4 +162,6 @@ shape = SubResource("RectangleShape2D_wpond")
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
 [connection signal="area_exited" from="Area2D2" to="." method="_on_area_2d_2_area_exited"]
+[connection signal="area_entered" from="Area2D3" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="area_exited" from="Area2D3" to="." method="_on_area_2d_2_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

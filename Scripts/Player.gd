@@ -12,7 +12,7 @@ var playerAttacking = false
 var attack_damage = 20
 
 func _physics_process(delta):
-	
+	healthbarstuff()
 	# Apply gravity to the player
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -82,3 +82,8 @@ func _on_animation_player_animation_finished(anim_name):
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemygroup") and playerAttacking:
 		area.get_parent().take_damage(attack_damage)
+
+func healthbarstuff():
+	var healthbar2 = $ProgressBar
+	
+	healthbar2.value = playerHealth

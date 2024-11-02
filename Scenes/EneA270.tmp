@@ -113,8 +113,7 @@ size = Vector2(17, 25)
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j8me"]
 radius = 75.0067
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmoog"]
-size = Vector2(22, 23)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpigv"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -149,23 +148,15 @@ offset_bottom = -27.0
 scale = Vector2(0.2, 0.2)
 show_percentage = false
 
-[node name="damagePlayerArea" type="Area2D" parent="."]
+[node name="Area2D2" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="damagePlayerArea"]
-position = Vector2(-21, -29.5)
-shape = SubResource("RectangleShape2D_rmoog")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="damagePlayerArea"]
-position = Vector2(22, -29)
-shape = SubResource("RectangleShape2D_rmoog")
-
-[node name="Timer" type="Timer" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-21, -32)
+shape = SubResource("RectangleShape2D_mpigv")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="area_entered" from="damagePlayerArea" to="." method="_on_damage_player_area_area_entered"]
-[connection signal="area_exited" from="damagePlayerArea" to="." method="_on_damage_player_area_area_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]

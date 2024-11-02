@@ -319,9 +319,8 @@ _data = {
 "rightRun": SubResource("Animation_06icx")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gatyn"]
-radius = 14.0
-height = 40.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijpgx"]
+radius = 24.1661
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 4
@@ -359,19 +358,19 @@ limit_top = 0
 limit_bottom = 180
 position_smoothing_enabled = true
 
-[node name="Area2DDD" type="Area2D" parent="." groups=["enemyattacking"]]
+[node name="Area2D" type="Area2D" parent="." groups=["enemycandamage"]]
 collision_layer = 4
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DDD"]
-position = Vector2(-1, -16)
-shape = SubResource("CapsuleShape2D_gatyn")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_ijpgx")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.82307, 0.260438, 0.505268, 1)
-offset_left = -16.0
+modulate = Color(0.353541, 0.643102, 0.268626, 1)
+offset_left = -14.0
 offset_top = -43.0
-offset_right = 139.0
+offset_right = 126.0
 offset_bottom = -16.0
 scale = Vector2(0.2, 0.2)
 show_percentage = false

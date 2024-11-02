@@ -12,7 +12,9 @@ var playerAttacking = false
 var attack_damage = 20
 
 func _physics_process(delta):
-	healthbarstuff()
+	playerHealthUpdate()
+	
+	
 	# Apply gravity to the player
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -65,12 +67,6 @@ func _physics_process(delta):
 			$AnimationPlayer.play("attackLeft")
 			
 	move_and_slide()
-  
-func playerDamaging(enemyDamageAmount):
-	playerHealth -= enemyDamageAmount
-	print(playerHealth)
-	if playerHealth <= 0:
-		queue_free()
 		
 		
 # Function for animation finished
@@ -82,8 +78,17 @@ func _on_animation_player_animation_finished(anim_name):
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemygroup") and playerAttacking:
 		area.get_parent().take_damage(attack_damage)
-
-func healthbarstuff():
-	var healthbar2 = $ProgressBar
+		
+func take_damage(damage_amount):
+	playerHealth -= damage_amount
+	print(playerHealth)
+	if playerHealth <= 0:
+		die()
+				
+func die():
+	queue_free()
 	
-	healthbar2.value = playerHealth
+func playerHealthUpdate():
+	var playerBar = $ProgressBar
+	
+	playerBar.value = playerHealth

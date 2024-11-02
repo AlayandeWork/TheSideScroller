@@ -2,13 +2,17 @@ extends  CharacterBody2D
 
 var player = null
 var enemySpeed = 100
-
 var health = 100
-var enemyAttackAmount = 20
+var attack_damage = 20
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var damage_timer = $Timer
+@onready var DamageClock = $Timer	
+
 
 func _process(delta):
+	# For calling functions
+	enemyHealthBar()
+
+	
 	if player:
 		followPlayer(delta)
 	else:
@@ -18,13 +22,13 @@ func followPlayer(delta):
 	if player != null:
 		var direction = (player.position - position).normalized()
 		velocity = direction * enemySpeed
-		move_and_slide()
+		
 	else:
 		velocity = Vector2.ZERO
-		move_and_slide()
-	#var direction = (player.position - position).normalized()
-	#velocity = direction * enemySpeed
-	#move_and_slide()
+		
+	move_and_slide()
+	
+	
 	
 	if velocity.x > 0:
 		animated_sprite.flip_h = true
@@ -46,28 +50,34 @@ func Idleanimation():
 	if 	animated_sprite.animation != "enemyFly":
 		animated_sprite.play("enemyFly")
 		
+func enemyHealthBar():
+	var enemyHealth = $enemyHealthBar
+	enemyHealth.value = health
+
+
 func take_damage(damage_amount):
 	health -= damage_amount
 	print(health)
 	if health <= 0:
 		die()
 		
+			
 func die():
 	queue_free()
 
 
-func _on_area_2d_2_area_entered(area):
-	if area.is_in_group("enemyattacking"):
-		area.get_parent().playerDamaging(enemyAttackAmount)
-		damage_timer.start()
+func _on_damage_player_area_area_entered(area):
+	if area.is_in_group("enemycandamage"):
+		area.get_parent().take_damage(attack_damage)
+		DamageClock.start()
 
 
-func _on_area_2d_2_area_exited(area):
-	if area.is_in_group("enemyattacking"):
+func _on_damage_player_area_area_exited(area):
+	if area.is_in_group("enemycandamage"):
 		player = null
-		damage_timer.stop()
+		DamageClock.stop()
 
 
 func _on_timer_timeout():
-	if player:  # Ensure player is still in the area
-		player.playerDamaging(enemyAttackAmount)  # Call damage function on the player
+	if player:
+		player.take_damage(attack_damage)

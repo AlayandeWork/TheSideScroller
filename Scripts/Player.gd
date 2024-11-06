@@ -6,7 +6,7 @@ var playerHealth  = 100
 var speed = 190
 var jumpPower = 370
 var gravity = 1000
-var currentDirection = 1 
+var currentDirection = 1
 var playerAttacking = false
 
 var attack_damage = 20

@@ -1,94 +1,85 @@
 extends CharacterBody2D
 
+# Player Status
 var playerHealth  = 100
+var attackDamage = 20
 
-# Player Variables
+# Player Movement Constants
 var speed = 190
 var jumpPower = 370
 var gravity = 1000
+
+# State Variables
 var currentDirection = 1
 var playerAttacking = false
 
-var attack_damage = 20
 
 func _physics_process(delta):
-	playerHealthUpdate()
+	player_health_update()
 	
 	
-	# Apply gravity to the player
+	# Apply gravity if in the air
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
 	
-	# Player movement Left & Right
+	# Player movement
 	var playerDirection = Input.get_axis("Left","Right")
 	
 	# Check player is on the floor
 	if is_on_floor():
-		# Player Jumping
-		if Input.is_action_just_pressed("Jump") and playerAttacking == false:
-			# Adjusting the jump power
-			velocity.y -= jumpPower
+		if Input.is_action_just_pressed("Jump") and not playerAttacking:
+			velocity.y =- jumpPower
 			$AnimationPlayer.play("Jump")
-		 # Player Running
-		elif playerDirection and playerAttacking == false:
-			velocity.x = speed * playerDirection
-			if playerDirection > 0:
-				currentDirection = 1 # Facing Right
-				$AnimationPlayer.play("rightRun")
-			else:
-				currentDirection = -1 # Facing Left
-				$AnimationPlayer.play("leftRun")
+		elif playerDirection and not playerAttacking:
+			move_horizontally(playerDirection)
 		else:
-		# Player Idle
-			velocity.x = 0
-			if playerAttacking == false:
-				if currentDirection > 0:
-					$AnimationPlayer.play("IdleRight")
-				else:
-					$AnimationPlayer.play("IdleLeft")
-	
-	
-	# Check player not on the floor
+			idle_animation()
 	else:
-		# Player Falling
-		if velocity.y > 0:
-			$AnimationPlayer.play("Fall")
-		# Player Jumpings
-		else:
-			$AnimationPlayer.play("Jump")
+		$AnimationPlayer.play("Fall" if velocity.y > 0 else "Jump")
 			
 			
 	if Input.is_action_just_pressed("Attack") and is_on_floor():
 		playerAttacking = true
-		if currentDirection > 0:
-			$AnimationPlayer.play("attackRight")
-		else:
-			$AnimationPlayer.play("attackLeft")
+		$AnimationPlayer.play("attackRight" if currentDirection > 0 else "attackLeft")
 			
 	move_and_slide()
 		
 		
+func move_horizontally(direction):
+	velocity.x = speed * direction
+	currentDirection = sign(direction)
+	$AnimationPlayer.play("rightRun" if currentDirection > 0 else "leftRun")
+		
+func idle_animation():
+	velocity.x = 0
+	if not playerAttacking:
+		$AnimationPlayer.play("IdleRight" if currentDirection > 0 else "IdleLeft")
+		
+		
+		
 # Function for animation finished
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "attackRight" or anim_name == "attackLeft":
+	if anim_name in ["attackRight", "attackLeft"]:
 		playerAttacking = false
 
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemygroup") and playerAttacking:
-		area.get_parent().take_damage(attack_damage)
-		
+		area.get_parent().take_damage(attackDamage)
+	
+	
+# Function for player damage	
 func take_damage(damage_amount):
 	playerHealth -= damage_amount
 	print(playerHealth)
 	if playerHealth <= 0:
 		die()
-				
+			
+# Function for player death	
 func die():
 	queue_free()
-	
-func playerHealthUpdate():
-	var playerBar = $ProgressBar
-	
-	playerBar.value = playerHealth
+
+# Function for player health update
+func player_health_update():
+	$ProgressBar.value = playerHealth

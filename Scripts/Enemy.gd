@@ -1,9 +1,12 @@
 extends  CharacterBody2D
 
+# References to player and enemy attributes
 var player = null
 var enemySpeed = 100
 var health = 100
 var attack_damage = 20
+
+# Node References
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var DamageClock = $Timer	
 
@@ -16,13 +19,12 @@ func _process(delta):
 	if player:
 		followPlayer(delta)
 	else:
-		animated_sprite.play("enemyFly")
+		play_idle_animation()
 
 func followPlayer(delta):
 	if player != null:
 		var direction = (player.position - position).normalized()
 		velocity = direction * enemySpeed
-		
 	else:
 		velocity = Vector2.ZERO
 		
@@ -35,7 +37,10 @@ func followPlayer(delta):
 	elif velocity.x < 0:
 		animated_sprite.flip_h = false
 	animated_sprite.play("enemyFly")
-	
+
+func play_idle_animation():
+	velocity = Vector2.ZERO
+	animated_sprite.play("enemyFly")
 	
 func _on_area_2d_body_entered(body):
 	if body.name == "Player":

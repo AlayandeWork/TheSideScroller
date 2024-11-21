@@ -4097,4 +4097,4 @@ stretch_mode = 1
 position = Vector2(1002, 166)
 
 [node name="Player" parent="." instance=ExtResource("5_wyt43")]
-position = Vector2(730, 151)
+position = Vector2(16, 158)

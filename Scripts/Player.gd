@@ -41,7 +41,6 @@ func _physics_process(delta):
 		else:
 			idle_animation()
 	else:
-		//h
 		if not isDead and not isHit:
 			$AnimationPlayer.play("Fall" if velocity.y > 0 else "Jump")
 			

@@ -69,7 +69,7 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name in ["attackRight", "attackLeft"]:
 		playerAttacking = false
 	elif anim_name == "Death":
-		queue_free()
+		get_tree().reload_current_scene()
 	elif anim_name == "Hit":
 		isHit = false
 

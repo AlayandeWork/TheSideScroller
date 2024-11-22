@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://iatqn0qtv4gg"]
+[gd_scene load_steps=19 format=3 uid="uid://iatqn0qtv4gg"]
 
 [ext_resource type="Texture2D" uid="uid://br2oyfsk6oqkh" path="res://Assets/World Assets/oak_woods_tileset.png" id="1_4v5cy"]
 [ext_resource type="Texture2D" uid="uid://cuy5nopg2dxyj" path="res://Assets/World Assets/rock_3.png" id="2_63hwg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cfdynuygwc7uc" path="res://Assets/World Assets/background_layer_2.png" id="7_t4q4p"]
 [ext_resource type="Texture2D" uid="uid://cbjq72x3u7yh7" path="res://Assets/World Assets/background_layer_3.png" id="8_2iydt"]
 [ext_resource type="PackedScene" uid="uid://dmg00ajypj0x6" path="res://Scenes/Enemy.tscn" id="9_epoh3"]
+[ext_resource type="PackedScene" uid="uid://bwm2ttu2b7j7p" path="res://Scenes/Deathzone.tscn" id="11_oox1e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8l07"]
 texture = ExtResource("1_4v5cy")
@@ -4045,6 +4046,9 @@ sources/2 = SubResource("TileSetAtlasSource_8f4c8")
 sources/3 = SubResource("TileSetAtlasSource_homsh")
 sources/4 = SubResource("TileSetAtlasSource_rwc8l")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_75ttf"]
+distance = -302.0
+
 [node name="mainScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -4097,4 +4101,10 @@ stretch_mode = 1
 position = Vector2(1002, 166)
 
 [node name="Player" parent="." instance=ExtResource("5_wyt43")]
-position = Vector2(16, 158)
+position = Vector2(11, 153)
+
+[node name="Deathzone" parent="." instance=ExtResource("11_oox1e")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
+position = Vector2(415, -59)
+shape = SubResource("WorldBoundaryShape2D_75ttf")

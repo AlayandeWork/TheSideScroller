@@ -9,8 +9,11 @@ var attack_damage = 20
 # Node References
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var DamageClock = $Timer	
+@onready var health_bar_timer = $health_bar_timer
+@onready var enemy_health_bar = $enemyHealthBar
 
-
+func _ready():
+	enemy_health_bar.visible = false
 func _process(delta):
 	# For calling functions
 	enemyHealthBar()
@@ -45,10 +48,12 @@ func play_idle_animation():
 func _on_area_2d_body_entered(body):
 	if body.name == "Player":
 		player = body
+		enemy_health_bar.visible = true
 		
 func _on_area_2d_body_exited(body):
 	if body.name == "Player":
 		player = null
+		health_bar_timer.start()
 		
 		
 func Idleanimation():
@@ -86,3 +91,12 @@ func _on_damage_player_area_area_exited(area):
 func _on_timer_timeout():
 	if player:
 		player.take_damage(attack_damage)
+
+
+func _on_health_bar_timer_timeout():
+	enemy_health_bar.visible = false
+	health = 100
+
+
+func _on_health_zone_area_exited(area):
+	pass # Replace with function body.

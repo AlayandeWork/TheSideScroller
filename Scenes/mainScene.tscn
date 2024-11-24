@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://iatqn0qtv4gg"]
+[gd_scene load_steps=20 format=3 uid="uid://iatqn0qtv4gg"]
 
 [ext_resource type="Texture2D" uid="uid://br2oyfsk6oqkh" path="res://Assets/World Assets/oak_woods_tileset.png" id="1_4v5cy"]
 [ext_resource type="Texture2D" uid="uid://cuy5nopg2dxyj" path="res://Assets/World Assets/rock_3.png" id="2_63hwg"]
@@ -4049,6 +4049,9 @@ sources/4 = SubResource("TileSetAtlasSource_rwc8l")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_75ttf"]
 distance = -302.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbmhr"]
+size = Vector2(66, 46)
+
 [node name="mainScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -4100,6 +4103,12 @@ stretch_mode = 1
 [node name="Enemy" parent="." instance=ExtResource("9_epoh3")]
 position = Vector2(1002, 166)
 
+[node name="Enemy2" parent="." instance=ExtResource("9_epoh3")]
+position = Vector2(282, 52)
+
+[node name="Enemy3" parent="." instance=ExtResource("9_epoh3")]
+position = Vector2(573, 118)
+
 [node name="Player" parent="." instance=ExtResource("5_wyt43")]
 position = Vector2(11, 153)
 
@@ -4108,3 +4117,23 @@ position = Vector2(11, 153)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
 position = Vector2(415, -59)
 shape = SubResource("WorldBoundaryShape2D_75ttf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+modulate = Color(0.281791, 0.868751, 0.724808, 1)
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 122.0
+offset_bottom = 18.0
+show_percentage = false
+
+[node name="health_zone" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="health_zone"]
+position = Vector2(82, 93)
+shape = SubResource("RectangleShape2D_kbmhr")
+
+[connection signal="body_entered" from="health_zone" to="Player" method="_on_health_zone_body_entered"]
+[connection signal="body_exited" from="health_zone" to="Player" method="_on_health_zone_body_exited"]

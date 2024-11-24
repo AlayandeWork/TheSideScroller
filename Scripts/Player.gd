@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Player Status
 var playerHealth  = 100
 var attackDamage = 20
+@onready var main_progress_bar = $"../CanvasLayer/ProgressBar"
 
 # Player Movement Constants
 var speed = 190
@@ -15,11 +16,17 @@ var currentDirection = 1
 var playerAttacking = false
 var isDead = false
 var isHit = false
+var health_increase = false
 
+func _process(delta: float):
+	if health_increase and playerHealth < 100:
+		playerHealth += 10 * delta
+		if playerHealth >= 100:
+			playerHealth = 100
+		print ("new player health = ", playerHealth)
 
 func _physics_process(delta):
 	player_health_update()
-	
 	
 	# Apply gravity if in the air
 	if not is_on_floor():
@@ -100,10 +107,21 @@ func die():
 
 # Function for player health update
 func player_health_update():
-	$ProgressBar.value = playerHealth
+	main_progress_bar.value = playerHealth
 
 func initial_knockback():
 	velocity.x = -knockBackForce * currentDirection
 
 func apply_knockback(delta):
 	velocity.x = lerp(velocity.x, 0.0, 5 * delta)
+
+
+func _on_health_zone_body_entered(body):
+	if body.name == "Player":
+		health_increase = true
+		
+
+
+func _on_health_zone_body_exited(body):
+	if body.name == "Player":
+		health_increase = false

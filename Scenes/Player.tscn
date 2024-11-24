@@ -356,7 +356,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijpgx"]
 radius = 24.1661
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_uwoje")
@@ -399,15 +399,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_ijpgx")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.353541, 0.643102, 0.268626, 1)
-offset_left = -14.0
-offset_top = -43.0
-offset_right = 126.0
-offset_bottom = -16.0
-scale = Vector2(0.2, 0.2)
-show_percentage = false
 
 [connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

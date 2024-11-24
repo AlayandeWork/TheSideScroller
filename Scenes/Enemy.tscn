@@ -164,9 +164,14 @@ shape = SubResource("RectangleShape2D_rmoog")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="health_bar_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="area_entered" from="damagePlayerArea" to="." method="_on_damage_player_area_area_entered"]
 [connection signal="area_exited" from="damagePlayerArea" to="." method="_on_damage_player_area_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="health_bar_timer" to="." method="_on_health_bar_timer_timeout"]

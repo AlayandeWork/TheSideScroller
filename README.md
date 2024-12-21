@@ -1,0 +1,1 @@
+This 2D side-scrolling game, created in Godot, highlights essential game development skills such as player movement, platform mechanics, and TileMap-based level design. A great example for exploring game creation
